@@ -9,12 +9,10 @@ export async function POST(req: Request) {
 
         const { name } = body;
 
-        // ! No User ID
         if (!userId) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
-        // ! No Name
         if (!name) {
             return new NextResponse("Name is required", { status: 400 });
         }
