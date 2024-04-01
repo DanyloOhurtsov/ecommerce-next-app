@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Heading } from "@/components/custom/components";
 import { AlertModal } from "@/components/modals/components";
+import ApiAlert from "@/components/ui/api-alert";
 
 interface SettingsFormProps {
     initialData: Store;
@@ -135,6 +136,12 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
                     </Button>
                 </form>
             </Form>
+            <Separator />
+            <ApiAlert
+                title="test"
+                description={`${origin}/api/${params.storeId}`}
+                variant="public"
+            />
         </>
     );
 };
