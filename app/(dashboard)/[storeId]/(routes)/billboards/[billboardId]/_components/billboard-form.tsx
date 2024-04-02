@@ -24,8 +24,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Heading } from "@/components/custom/components";
 import { AlertModal } from "@/components/modals/components";
-import ApiAlert from "@/components/ui/api-alert";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/custom/image-upload";
 
 const formSchema = z.object({
@@ -42,7 +40,6 @@ interface BillboardFormProps {
 const BillboardForm = ({ initialData }: BillboardFormProps) => {
     const params = useParams();
     const router = useRouter();
-    const origin = useOrigin();
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
