@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Heading } from "@/components/custom/components";
 import { AlertModal } from "@/components/modals/components";
+import { Label } from "@/components/ui/label";
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -160,11 +161,18 @@ const ColorForm = ({ initialData }: ColorFormProps) => {
                                     <FormLabel>Value</FormLabel>
                                     <FormControl>
                                         <div className="flex items-center gap-x-4">
-                                            <Input
-                                                disabled={loading}
-                                                placeholder="Color value"
-                                                {...field}
-                                            />
+                                            <div className="flex items-center gap-x-4 border h-10 rounded-md px-3 py-2 w-40 justify-between">
+                                                <Label>
+                                                    {field.value.toUpperCase()}
+                                                </Label>
+                                                <Input
+                                                    type="color"
+                                                    disabled={loading}
+                                                    placeholder="Color value"
+                                                    className="bg-transparent w-8 h-8 p-0 border-none"
+                                                    {...field}
+                                                />
+                                            </div>
                                             <div
                                                 className="border p-4 rounded-full"
                                                 style={{
