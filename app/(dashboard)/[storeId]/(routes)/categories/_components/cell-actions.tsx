@@ -13,12 +13,12 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CategotyColumn } from "./columns";
+import { CategoryColumn } from "./columns";
 import { Button } from "@/components/ui/button";
 import AlertModal from "@/components/modals/alert-modal";
 
 interface CellActionProps {
-    data: CategotyColumn;
+    data: CategoryColumn;
 }
 
 const CellAction = ({ data }: CellActionProps) => {

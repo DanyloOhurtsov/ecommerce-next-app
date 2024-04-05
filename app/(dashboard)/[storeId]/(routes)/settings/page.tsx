@@ -3,13 +3,13 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { SettingsForm } from "./_components/components";
 
-interface SettignsPageProps {
+interface SettingsPageProps {
     params: {
         storeId: string;
     };
 }
 
-const SettignsPage = async ({ params }: SettignsPageProps) => {
+const SettingsPage = async ({ params }: SettingsPageProps) => {
     const { userId } = auth();
 
     if (!userId) redirect("/sign-in");
@@ -29,4 +29,4 @@ const SettignsPage = async ({ params }: SettignsPageProps) => {
     );
 };
 
-export default SettignsPage;
+export default SettingsPage;

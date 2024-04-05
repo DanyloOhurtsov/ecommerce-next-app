@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -60,6 +60,11 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
             imageUrl: "",
         },
     });
+
+    // Refreshing after updating
+    useEffect(() => {
+        router.refresh();
+    }, [initialData?.imageUrl, initialData?.label]);
 
     const onSubmit = async (data: BillboardFormValues) => {
         try {
@@ -137,11 +142,11 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
                         name="imageUrl"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Backgound image</FormLabel>
+                                <FormLabel>Background image</FormLabel>
                                 <FormControl>
                                     <ImageUpload
                                         value={field.value ? [field.value] : []}
-                                        disapled={loading}
+                                        disabled={loading}
                                         onChange={(url) => field.onChange(url)}
                                         onRemove={() => field.onChange("")}
                                     />

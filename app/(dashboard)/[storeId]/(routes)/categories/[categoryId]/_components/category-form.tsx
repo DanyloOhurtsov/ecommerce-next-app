@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -37,14 +37,14 @@ const formSchema = z.object({
     billboardId: z.string().min(1),
 });
 
-type CategotyFormValues = z.infer<typeof formSchema>;
+type CategoryFormValues = z.infer<typeof formSchema>;
 
-interface CategotyFormProps {
+interface CategoryFormProps {
     initialData: Category | null;
     billboards: Billboard[];
 }
 
-const CategotyForm = ({ initialData, billboards }: CategotyFormProps) => {
+const CategoryForm = ({ initialData, billboards }: CategoryFormProps) => {
     const params = useParams();
     const router = useRouter();
 
@@ -56,7 +56,7 @@ const CategotyForm = ({ initialData, billboards }: CategotyFormProps) => {
     const toastMessage = initialData ? "Category updated" : "Category created";
     const action = initialData ? "Save changes" : "Create";
 
-    const form = useForm<CategotyFormValues>({
+    const form = useForm<CategoryFormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: initialData || {
             name: "",
@@ -64,7 +64,12 @@ const CategotyForm = ({ initialData, billboards }: CategotyFormProps) => {
         },
     });
 
-    const onSubmit = async (data: CategotyFormValues) => {
+    // Refreshing after updating
+    useEffect(() => {
+        router.refresh();
+    }, [initialData?.name]);
+
+    const onSubmit = async (data: CategoryFormValues) => {
         try {
             setLoading(true);
             if (initialData) {
@@ -203,4 +208,4 @@ const CategotyForm = ({ initialData, billboards }: CategotyFormProps) => {
     );
 };
 
-export default CategotyForm;
+export default CategoryForm;

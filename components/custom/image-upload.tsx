@@ -7,14 +7,14 @@ import Image from "next/image";
 import { CldUploadWidget } from "next-cloudinary";
 
 interface ImageUploadProps {
-    disapled: boolean;
+    disabled: boolean;
     onChange: (value: string) => void;
     onRemove: (value: string) => void;
     value: string[];
 }
 
 const ImageUpload = ({
-    disapled,
+    disabled,
     onChange,
     onRemove,
     value,
@@ -66,7 +66,7 @@ const ImageUpload = ({
                     return (
                         <Button
                             type="button"
-                            disabled={disapled}
+                            disabled={disabled}
                             variant={"secondary"}
                             onClick={onClick}
                         >
