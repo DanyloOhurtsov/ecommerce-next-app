@@ -2,13 +2,14 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import CellAction from "./cell-actions";
+import { Color } from "@prisma/client";
 
 export type ProductColumn = {
     id: string;
     name: string;
     price: string;
     size: string;
-    color: string;
+    color: Color;
     category: string;
     isFeatured: boolean;
     isArchived: boolean;
@@ -19,14 +20,21 @@ export const columns: ColumnDef<ProductColumn>[] = [
     {
         accessorKey: "name",
         header: "Name",
+        cell: ({ row }) => <p className="">{row.original.name}</p>,
     },
     {
         accessorKey: "isArchived",
         header: "Archived",
+        cell: ({ row }) => (
+            <p className="">{row.original.isArchived ? "Archived" : "-"}</p>
+        ),
     },
     {
         accessorKey: "isFeatured",
         header: "Featured",
+        cell: ({ row }) => (
+            <p className="">{row.original.isFeatured ? "Featured" : "-"}</p>
+        ),
     },
     {
         accessorKey: "price",
@@ -35,27 +43,36 @@ export const columns: ColumnDef<ProductColumn>[] = [
     {
         accessorKey: "category",
         header: "Category",
+        cell: ({ row }) => <p className="truncate">{row.original.category}</p>,
     },
     {
         accessorKey: "size",
         header: "Size",
+        cell: ({ row }) => (
+            <p className="truncate min-w-10 flex justify-center items-center p-0.5 bg-orange-400 bg-background rounded-md text-white">
+                {row.original.size}
+            </p>
+        ),
     },
     {
-        accessorKey: "colro",
+        accessorKey: "color",
         header: "Color",
         cell: ({ row }) => (
             <div className="flex items-center gap-x-2">
-                {row.original.color}
                 <div
                     className="h-6 w-6 rounded-full"
-                    style={{ backgroundColor: row.original.color }}
+                    style={{ backgroundColor: row.original.color.value }}
                 />
+                <p className="truncate">{row.original.color.name}</p>
             </div>
         ),
     },
     {
         accessorKey: "createdAt",
         header: "Date",
+        cell: ({ row }) => (
+            <p className="truncate text-center">{row.original.createdAt}</p>
+        ),
     },
     {
         id: "actions",
