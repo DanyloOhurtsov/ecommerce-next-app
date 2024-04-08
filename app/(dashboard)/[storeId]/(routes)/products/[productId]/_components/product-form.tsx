@@ -299,7 +299,7 @@ const ProductForm = ({
                                                     value={size.id}
                                                 >
                                                     <div className="flex w-full items-center gap-x-2">
-                                                        <p className="min-w-10 flex justify-center items-center p-0.5 bg-orange-400 bg-background rounded-md text-white">
+                                                        <p className="min-w-12 flex justify-center items-center p-0.5 bg-orange-400 bg-background rounded-md text-white">
                                                             {size.value}
                                                         </p>
                                                         <p>{size.name}</p>

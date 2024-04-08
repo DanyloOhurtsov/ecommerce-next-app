@@ -49,7 +49,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
         accessorKey: "size",
         header: "Size",
         cell: ({ row }) => (
-            <p className="truncate min-w-10 flex justify-center items-center p-0.5 bg-orange-400 bg-background rounded-md text-white">
+            <p className="truncate min-w-12 flex justify-center items-center p-0.5 bg-orange-400 bg-background rounded-md text-white">
                 {row.original.size}
             </p>
         ),
