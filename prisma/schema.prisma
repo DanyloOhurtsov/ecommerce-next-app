@@ -87,7 +87,7 @@ model Color {
 model Product {
   id         String   @id @default(uuid()) @map("_id")
   name       String
-  value      Int
+  price      Int
   isFeatured Boolean  @default(false)
   isArchived Boolean  @default(false)
   createdAt  DateTime @default(now())
