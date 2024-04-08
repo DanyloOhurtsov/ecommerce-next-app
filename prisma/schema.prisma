@@ -8,26 +8,26 @@ datasource db {
 }
 
 model Store {
-  id         String      @id @default(uuid()) @map("_id")
-  name       String
-  userId     String
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  id        String   @id @default(uuid()) @map("_id")
+  name      String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
   billboards Billboard[] @relation("StoreToBillboard")
   categories Category[]  @relation("StoreCategory")
   sizes      Size[]      @relation("StoreToSize")
   colors     Color[]     @relation("StoreToColor")
-  products   Product[]     @relation("StoreToProduct")
+  products   Product[]   @relation("StoreToProduct")
 }
 
 model Billboard {
-  id         String     @id @default(uuid()) @map("_id")
-  label      String
-  imageUrl   String
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  id        String   @id @default(uuid()) @map("_id")
+  label     String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
   storeId    String
@@ -38,10 +38,10 @@ model Billboard {
 }
 
 model Category {
-  id          String    @id @default(uuid()) @map("_id")
-  name        String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        String   @id @default(uuid()) @map("_id")
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
   storeId     String
@@ -55,16 +55,16 @@ model Category {
 }
 
 model Size {
-  id         String    @id @default(uuid()) @map("_id")
-  name       String
-  value      String
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  id        String   @id @default(uuid()) @map("_id")
+  name      String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
-  storeId    String
-  store     Store      @relation("StoreToSize", fields: [storeId], references: [id])
-  products  Product[]
+  storeId  String
+  store    Store     @relation("StoreToSize", fields: [storeId], references: [id])
+  products Product[]
 
   @@index([storeId])
 }
@@ -77,9 +77,9 @@ model Color {
   updatedAt DateTime @updatedAt
 
   // Relations
-  storeId   String
-  store     Store    @relation("StoreToColor", fields: [storeId], references: [id])
-  products  Product[]
+  storeId  String
+  store    Store     @relation("StoreToColor", fields: [storeId], references: [id])
+  products Product[]
 
   @@index([storeId])
 }
@@ -102,8 +102,7 @@ model Product {
   size       Size     @relation(fields: [sizeId], references: [id])
   colorId    String
   color      Color    @relation(fields: [colorId], references: [id])
-  images   Image[]
-
+  images     Image[]
 
   @@index([storeId])
   @@index([categoryId])
@@ -112,14 +111,14 @@ model Product {
 }
 
 model Image {
-  id         String   @id @default(uuid()) @map("_id")
-  url        String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(uuid()) @map("_id")
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
   productId String
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@index([productId])
 }
