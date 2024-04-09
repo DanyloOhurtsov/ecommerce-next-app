@@ -140,8 +140,8 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
             </Form>
             <Separator />
             <ApiAlert
-                title="test"
-                description={`${origin}/api/${params.storeId}`}
+                title="GET"
+                description={`${origin}/api/stores/${params.storeId}`}
                 variant="public"
             />
         </>
