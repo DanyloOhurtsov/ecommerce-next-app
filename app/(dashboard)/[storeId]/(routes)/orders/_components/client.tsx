@@ -2,7 +2,6 @@
 
 import { Heading } from "@/components/custom/components";
 import { Separator } from "@/components/ui/separator";
-import { useParams, useRouter } from "next/navigation";
 import { OrderColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 
@@ -11,9 +10,6 @@ interface OrderClientProps {
 }
 
 const OrderClient = ({ data }: OrderClientProps) => {
-    const router = useRouter();
-    const params = useParams();
-
     return (
         <>
             <Heading
