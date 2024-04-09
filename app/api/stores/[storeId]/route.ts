@@ -70,3 +70,48 @@ export async function DELETE(
         return new NextResponse("Internal error", { status: 500 });
     }
 }
+
+export async function GET(
+    req: Request,
+    { params }: { params: { storeId: string } }
+) {
+    try {
+        if (!params.storeId) {
+            return new NextResponse("Store ID is required", { status: 400 });
+        }
+
+        const { userId } = auth();
+        if (!userId) {
+            return new NextResponse(
+                "You are unauthenticated. Please login and try again",
+                { status: 400 }
+            );
+        }
+
+        const storeByUserId = await prismadb.store.findFirst({
+            where: {
+                id: params.storeId,
+                userId,
+            },
+        });
+        if (!storeByUserId) {
+            return new NextResponse(
+                "Unauthorized. The store you are looking for does not belong to you.",
+                {
+                    status: 403,
+                }
+            );
+        }
+
+        const store = await prismadb.store.findMany({
+            where: {
+                id: params.storeId,
+            },
+        });
+
+        return NextResponse.json(store);
+    } catch (error) {
+        console.log("[STORE_GET]", error);
+        return new NextResponse("Internal error", { status: 500 });
+    }
+}
