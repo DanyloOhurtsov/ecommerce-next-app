@@ -36,4 +36,5 @@ export interface Image {
     id: string;
     name: string;
     value: string;
+    url: string;
 }
