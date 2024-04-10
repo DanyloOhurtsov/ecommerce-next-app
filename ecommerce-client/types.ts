@@ -1,10 +1,10 @@
-interface Billboard {
+export interface Billboard {
     id: string;
-    name: string;
+    label: string;
     imageUrl: string;
 }
 
-interface Category {
+export interface Category {
     id: string;
     name: string;
     billboard: Billboard;
