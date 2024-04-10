@@ -1,11 +1,8 @@
-"use client";
-
 import Container from "./ui/container";
 import Link from "next/link";
 import MainNav from "./main-nav";
 import getCategories from "@/actions/get-categories";
-
-const revalidate = 0;
+import NavbarActions from "./navbar-actions";
 
 const Navbar = async () => {
     const categories = await getCategories();
@@ -18,6 +15,7 @@ const Navbar = async () => {
                         <p className="font-bold text-xl">Store</p>
                     </Link>
                     <MainNav data={categories} />
+                    <NavbarActions />
                 </div>
             </Container>
         </div>
