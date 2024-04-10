@@ -9,7 +9,7 @@ interface IconButtonProps {
 
 const IconButton = ({ className, icon, onClick }: IconButtonProps) => {
     return (
-        <Button variant={'expand'} onClick={onClick} className={className}>
+        <Button variant={'expand'} size={'icon'} onClick={onClick} className={className}>
             {icon}
         </Button>
     );
