@@ -7,6 +7,7 @@ import Container from "@/components/ui/container";
 import Filter from "./_components/filter";
 import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/product-card";
+import MobileFilters from "./_components/mobile-filters";
 
 interface CategoryPageProps {
     params: {
@@ -24,7 +25,6 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
         sizeId: searchParams.sizeId,
         colorId: searchParams.colorId,
     });
-    console.log(products);
 
     const sizes = await getSizes();
     const colors = await getColors();
@@ -36,7 +36,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
                 <Billboard data={category.billboard} />
                 <div className="px-4 sm:px-6 lg:px-8 pb-24">
                     <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
-                        {/* Mobile filters */}
+                        <MobileFilters sizes={sizes} colors={colors} />
                         <div className="hidden lg:block">
                             <Filter
                                 valueKey="sizeId"
