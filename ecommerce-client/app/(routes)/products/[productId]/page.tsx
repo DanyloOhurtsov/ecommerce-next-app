@@ -4,6 +4,7 @@ import Container from "@/components/ui/container";
 import ProductsList from "@/components/products-list";
 import Gallery from "@/components/gallery";
 import { Separator } from "@/components/ui/separator";
+import Info from "@/components/info";
 
 interface ProductPageProps {
     params: {
@@ -22,12 +23,9 @@ const ProductPage = async ({ params }: ProductPageProps) => {
         <div className="bg-white">
             <Container>
                 <div className="px-4 py-10 sm:px-6 lg:px-8">
-                    <div className="lg:grid lg:grid-cols-2 lg:items-center lg:gap-x-8">
+                    <div className="lg:grid lg:grid-cols-2 2xl:items-start lg:gap-x-8">
                         <Gallery images={product.images} />
-                        <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-                            {/* Info */}
-                            <h3>Info</h3>
-                        </div>
+                        <Info data={product} />
                     </div>
                     <Separator />
                     <ProductsList
