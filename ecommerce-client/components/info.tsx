@@ -4,7 +4,6 @@ import { Product } from "@/types";
 import Currency from "./ui/currency";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-import { ShoppingBag } from "lucide-react";
 
 interface InfoProps {
     data: Product;
@@ -29,18 +28,17 @@ const Info = ({ data }: InfoProps) => {
                 <div className="flex items-center gap-x-4">
                     <h3 className="font-semibold text-black">Color:</h3>
                     <div className="flex items-center gap-x-2">
-                        <p>{data.color.name}</p>
                         <div
                             className="w-6 h-6 rounded-full"
                             style={{ backgroundColor: data.color.value }}
-                        />
+                            />
+                            <p>{data.color.name}</p>
                     </div>
                 </div>
             </div>
             <div className="mt-10 flex items-center gap-x-3">
-                <Button className="flex items-center gap-x-2 rounded-full">
+                <Button className="rounded-full px-6">
                     Add to Cart
-                    <ShoppingBag className="w-6 h-6"/>
                 </Button>
             </div>
         </div>

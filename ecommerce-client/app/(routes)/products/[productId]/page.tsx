@@ -27,7 +27,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                         <Gallery images={product.images} />
                         <Info data={product} />
                     </div>
-                    <Separator />
+                    <Separator className="my-16"/>
                     <ProductsList
                         title="Related Items"
                         items={currentProducts}
