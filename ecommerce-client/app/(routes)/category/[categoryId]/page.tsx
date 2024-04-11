@@ -1,13 +1,16 @@
-import getCategory from "@/actions/get-category";
-import getColors from "@/actions/get-colors";
-import getProducts from "@/actions/get-products";
-import getSizes from "@/actions/get-sizes";
+import {
+    getCategory,
+    getSizes,
+    getProducts,
+    getColors,
+} from "@/actions/actions";
+
+import NoResults from "@/components/ui/no-results";
 import Billboard from "@/components/billboard";
 import Container from "@/components/ui/container";
-import Filter from "./_components/filter";
-import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/product-card";
-import MobileFilters from "./_components/mobile-filters";
+
+import { Filter, MobileFilters } from "./_components/components";
 
 interface CategoryPageProps {
     params: {
@@ -51,7 +54,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
                         </div>
                         <div className=" mt-6 lg:col-span-4 lg:mt-0">
                             {products.length === 0 && <NoResults />}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                                 {products.map((item) => (
                                     <ProductCard data={item} key={item.id} />
                                 ))}
