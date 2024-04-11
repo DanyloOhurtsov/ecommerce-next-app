@@ -1,13 +1,14 @@
 "use client";
 
-import { formatter } from "@/lib/utils";
+import { cn, formatter } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 
 interface CurrencyProps {
     value?: string | number;
+    className?: string;
 }
 
-const Currency = ({ value }: CurrencyProps) => {
+const Currency = ({ value, className }: CurrencyProps) => {
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
         setIsMounted(true);
@@ -17,7 +18,9 @@ const Currency = ({ value }: CurrencyProps) => {
     const numericValue: number = value ? parseFloat(value.toString()) : 0;
 
     return (
-        <div className="font-semibold">{formatter.format(numericValue)}</div>
+        <p className={cn("font-semibold", className)}>
+            {formatter.format(numericValue)}
+        </p>
     );
 };
 
