@@ -22,11 +22,11 @@ const Summary = () => {
             toast.success("payment completed");
             removeAll();
         }
-        
-        if(searchParams.get('canceled')){
+
+        if (searchParams.get("canceled")) {
             toast.success("Something went wwong");
         }
-    });
+    }, [removeAll, searchParams]);
 
     const onCheckout = async () => {
         const response = await axios.post(
