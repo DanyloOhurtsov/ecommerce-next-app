@@ -24,6 +24,8 @@ export interface Product {
 export interface Size {
     id: string;
     url: string;
+    value: string;
+    name: string;
 }
 
 export interface Color {
