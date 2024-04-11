@@ -8,12 +8,14 @@ import Currency from "./ui/currency";
 import { useRouter } from "next/navigation";
 import { MouseEventHandler } from "react";
 import usePreviewModal from "@/hooks/use-preview-modal";
+import useCart from "@/hooks/use-cart";
 
 interface ProductCardProps {
     data: Product;
 }
 
 const ProductCard = ({ data }: ProductCardProps) => {
+    const cart = useCart();
     const previewModal = usePreviewModal();
     const router = useRouter();
 
@@ -25,6 +27,12 @@ const ProductCard = ({ data }: ProductCardProps) => {
         event.stopPropagation();
 
         previewModal.onOpen(data);
+    };
+
+    const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+        event.stopPropagation();
+
+        cart.addItem(data);
     };
 
     return (
@@ -50,7 +58,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
                         <IconButton
                             icon={<ShoppingCart size={20} />}
                             className="text-gray-600"
-                            onClick={() => {}}
+                            onClick={onAddToCart}
                         />
                     </div>
                 </div>
@@ -59,7 +67,9 @@ const ProductCard = ({ data }: ProductCardProps) => {
             <div>
                 <p className="font-semibold text-lg">{data.name}</p>
                 <div className="flex items-center gap-x-1 text-gray-700 text-md">
-                    <p>{data.size.name}</p><span className=" text-gray-400">|</span><p>{data.color.name}</p>
+                    <p>{data.size.name}</p>
+                    <span className=" text-gray-400">|</span>
+                    <p>{data.color.name}</p>
                 </div>
             </div>
             {/* Price */}
