@@ -28,8 +28,8 @@ interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     searchKey: string;
-    isPaid: boolean;
-    setIsPaid: (value: boolean) => void;
+    isPaid?: boolean;
+    setIsPaid?: (value: boolean) => void;
 }
 
 export function DataTable<TData, TValue>({
@@ -70,10 +70,12 @@ export function DataTable<TData, TValue>({
                     }
                     className="max-w-sm"
                 />
-                <Switch
-                    onCheckedChange={() => setIsPaid(!isPaid)}
-                    checked={isPaid}
-                />
+                {!!setIsPaid && (
+                    <Switch
+                        onCheckedChange={() => setIsPaid(!isPaid)}
+                        checked={isPaid}
+                    />
+                )}
             </div>
             <div className="rounded-md border">
                 <Table>
