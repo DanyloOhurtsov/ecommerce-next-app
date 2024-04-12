@@ -22,17 +22,22 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { Switch } from "./switch";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     searchKey: string;
+    isPaid: boolean;
+    setIsPaid: (value: boolean) => void;
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
     searchKey,
+    isPaid,
+    setIsPaid,
 }: DataTableProps<TData, TValue>) {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -50,7 +55,7 @@ export function DataTable<TData, TValue>({
 
     return (
         <div>
-            <div className="flex items-center py-4">
+            <div className="flex items-center py-4 justify-between">
                 <Input
                     placeholder="Search"
                     value={
@@ -64,6 +69,10 @@ export function DataTable<TData, TValue>({
                             ?.setFilterValue(event.target.value)
                     }
                     className="max-w-sm"
+                />
+                <Switch
+                    onCheckedChange={() => setIsPaid(!isPaid)}
+                    checked={isPaid}
                 />
             </div>
             <div className="rounded-md border">

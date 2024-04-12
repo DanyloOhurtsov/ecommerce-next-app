@@ -9,7 +9,6 @@ export async function GET(
     { params }: { params: { sizeId: string } }
 ) {
     try {
-        console.log(params.sizeId);
         if (!params.sizeId) {
             return new NextResponse("Size ID is required", {
                 status: 400,
@@ -21,7 +20,6 @@ export async function GET(
                 id: params.sizeId,
             },
         });
-        console.log(params.sizeId);
         return NextResponse.json(size);
     } catch (error) {
         console.log("[SIZE_GET]", error);
@@ -90,7 +88,6 @@ export async function DELETE(
 ) {
     try {
         const { userId } = auth();
-        console.log(params.sizeId);
 
         if (!userId) {
             return new NextResponse("Unauthenticated", { status: 403 });
